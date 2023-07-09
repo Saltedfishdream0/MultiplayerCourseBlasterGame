@@ -61,7 +61,10 @@ void ABlasterPlayerController::BeginPlay()
 	Super::BeginPlay();
 
 	BlasterHUD = Cast<ABlasterHUD>(GetHUD());
-	ServerCheckMatchState();
+	if (BlasterHUD)
+	{
+		BlasterHUD->AddAnnouncement();
+	}
 }
 
 void ABlasterPlayerController::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -227,6 +230,7 @@ void ABlasterPlayerController::CheckTimeSync(float DeltaTime)
 	}
 }
 
+<<<<<<< HEAD
 void ABlasterPlayerController::HighPingWarning()
 {
 	BlasterHUD = BlasterHUD == nullptr ? Cast<ABlasterHUD>(GetHUD()) : BlasterHUD;
@@ -289,6 +293,8 @@ void ABlasterPlayerController::ClientJoinMidgame_Implementation(FName StateOfMat
 	}
 }
 
+=======
+>>>>>>> parent of 79f12f1 (Updating Warmup Time)
 void ABlasterPlayerController::OnPossess(APawn* InPawn)
 {
 	Super::OnPossess(InPawn);
@@ -302,9 +308,9 @@ void ABlasterPlayerController::OnPossess(APawn* InPawn)
 void ABlasterPlayerController::SetHUDHealth(float Health, float MaxHealth)
 {
 	BlasterHUD = BlasterHUD == nullptr ? Cast<ABlasterHUD>(GetHUD()) : BlasterHUD;
-	bool bHUDValid = BlasterHUD &&
-		BlasterHUD->CharacterOverlay &&
-		BlasterHUD->CharacterOverlay->HealthBar &&
+	bool bHUDValid = BlasterHUD && 
+		BlasterHUD->CharacterOverlay && 
+		BlasterHUD->CharacterOverlay->HealthBar && 
 		BlasterHUD->CharacterOverlay->HealthText;
 	if (bHUDValid)
 	{
@@ -438,6 +444,7 @@ void ABlasterPlayerController::SetHUDMatchCountdown(float CountdownTime)
 	}
 }
 
+<<<<<<< HEAD
 void ABlasterPlayerController::SetHUDAnnouncementCountdown(float CountdownTime)
 {
 	BlasterHUD = BlasterHUD == nullptr ? Cast<ABlasterHUD>(GetHUD()) : BlasterHUD;
@@ -510,6 +517,14 @@ void ABlasterPlayerController::SetHUDTime()
 		{
 			SetHUDMatchCountdown(TimeLeft);
 		}
+=======
+void ABlasterPlayerController::SetHUDTime()
+{
+	uint32 SecondsLeft = FMath::CeilToInt(MatchTime - GetServerTime());
+	if (CountdownInt != SecondsLeft)
+	{
+		SetHUDMatchCountdown(MatchTime - GetServerTime());
+>>>>>>> parent of 79f12f1 (Updating Warmup Time)
 	}
 
 	CountdownInt = SecondsLeft;

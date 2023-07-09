@@ -12,7 +12,7 @@ namespace MatchState
 }
 
 /**
- *
+ * 
  */
 UCLASS()
 class BLASTER_API ABlasterGameMode : public AGameMode
@@ -28,12 +28,15 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	float WarmupTime = 10.f;
 
+<<<<<<< HEAD
 	UPROPERTY(EditDefaultsOnly)
 	float MatchTime = 120.f;
 
 	UPROPERTY(EditDefaultsOnly)
 	float CooldownTime = 10.f;
 
+=======
+>>>>>>> parent of 79f12f1 (Updating Warmup Time)
 	float LevelStartingTime = 0.f;
 
 	bool bTeamsMatch = false;

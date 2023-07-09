@@ -9,7 +9,7 @@
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FHighPingDelegate, bool, bPingTooHigh);
 
 /**
- *
+ * 
  */
 UCLASS()
 class BLASTER_API ABlasterPlayerController : public APlayerController
@@ -23,8 +23,11 @@ public:
 	void SetHUDWeaponAmmo(int32 Ammo);
 	void SetHUDCarriedAmmo(int32 Ammo);
 	void SetHUDMatchCountdown(float CountdownTime);
+<<<<<<< HEAD
 	void SetHUDAnnouncementCountdown(float CountdownTime);
 	void SetHUDGrenades(int32 Grenades);
+=======
+>>>>>>> parent of 79f12f1 (Updating Warmup Time)
 	virtual void OnPossess(APawn* InPawn) override;
 	virtual void Tick(float DeltaTime) override;
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
@@ -48,8 +51,13 @@ protected:
 	virtual void BeginPlay() override;
 	void SetHUDTime();
 	void PollInit();
+<<<<<<< HEAD
 	virtual void SetupInputComponent() override;
 	/**
+=======
+
+	/** 
+>>>>>>> parent of 79f12f1 (Updating Warmup Time)
 	* Sync time between client and server
 	*/
 
@@ -69,6 +77,7 @@ protected:
 	float TimeSyncRunningTime = 0.f;
 	void CheckTimeSync(float DeltaTime);
 
+<<<<<<< HEAD
 	UFUNCTION(Server, Reliable)
 	void ServerCheckMatchState();
 
@@ -115,6 +124,13 @@ private:
 	float MatchTime = 0.f;
 	float WarmupTime = 0.f;
 	float CooldownTime = 0.f;
+=======
+private:
+	UPROPERTY()
+	class ABlasterHUD* BlasterHUD;
+	
+	float MatchTime = 120.f;
+>>>>>>> parent of 79f12f1 (Updating Warmup Time)
 	uint32 CountdownInt = 0;
 
 	UPROPERTY(ReplicatedUsing = OnRep_MatchState)
